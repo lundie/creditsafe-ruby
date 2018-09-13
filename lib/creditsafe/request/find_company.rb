@@ -79,13 +79,13 @@ module Creditsafe
                                "required search criteria"
         end
 
-        if search_criteria[:city] && search_criteria[:country_code] != "DE"
-          raise ArgumentError, "city is only supported for German searches"
-        end
+        # if search_criteria[:city] && search_criteria[:country_code] != "DE"
+        #   raise ArgumentError, "city is only supported for German searches"
+        # end
 
-        if search_criteria[:postal_code] && search_criteria[:country_code] != "DE"
-          raise ArgumentError, "Postal code is only supported for German searches"
-        end
+        # if search_criteria[:postal_code] && search_criteria[:country_code] != "DE"
+        #   raise ArgumentError, "Postal code is only supported for German searches"
+        # end
       end
       # rubocop:enable Metrics/MethodLength
       # rubocop:enable Metrics/CyclomaticComplexity
