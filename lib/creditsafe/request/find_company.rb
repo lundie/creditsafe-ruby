@@ -33,23 +33,27 @@ module Creditsafe
             registration_number
         end
 
+        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {} if province || city || postal_code
+
+        unless province.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"].merge!({
+            "#{Creditsafe::Namespace::DAT}:Province" => province,
+          })
+        end
+
         unless city.nil?
-          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"].merge!({
             "#{Creditsafe::Namespace::DAT}:City" => city,
-          }
+          })
         end
 
         unless postal_code.nil?
-          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"].merge!({
             "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code,
-          }
+          })
         end
 
-        unless province.nil?
-          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
-            "#{Creditsafe::Namespace::DAT}:Province" => province,
-          }
-        end
+
 
         build_message(search_criteria)
       end
