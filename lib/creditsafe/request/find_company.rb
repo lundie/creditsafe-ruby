@@ -46,7 +46,7 @@ module Creditsafe
         end
 
         unless province.nil?
-          search_criteria["#{Creditsafe::Namespace::DAT}:Province"] = {
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
             "#{Creditsafe::Namespace::DAT}:Province" => province,
           }
         end
