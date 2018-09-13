@@ -33,11 +33,11 @@ module Creditsafe
             registration_number
         end
 
-        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {} if province || city || postal_code
+        search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {} if province || city || postal_code || street
 
-        unless province.nil?
+        unless street.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:Address"].merge!({
-            "#{Creditsafe::Namespace::DAT}:Province" => province,
+            "#{Creditsafe::Namespace::DAT}:Street" => street,
           })
         end
 
@@ -53,6 +53,12 @@ module Creditsafe
           })
         end
 
+        unless province.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Address"].merge!({
+            "#{Creditsafe::Namespace::DAT}:Province" => province,
+          })
+        end
+
 
 
         build_message(search_criteria)
@@ -62,7 +68,7 @@ module Creditsafe
 
       private
 
-      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code, :province
+      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code, :province, :street
 
       def match_type
         Creditsafe::MatchType::ALLOWED[country_code.upcase.to_sym]&.first ||
