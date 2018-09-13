@@ -58,7 +58,7 @@ module Creditsafe
 
       private
 
-      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code
+      attr_reader :country_code, :registration_number, :city, :company_name, :postal_code, :province
 
       def match_type
         Creditsafe::MatchType::ALLOWED[country_code.upcase.to_sym]&.first ||
