@@ -13,6 +13,7 @@ module Creditsafe
         @company_name = search_criteria[:company_name]
         @city = search_criteria[:city]
         @postal_code = search_criteria[:postal_code]
+        @province = search_criteria[:province]
       end
 
       # rubocop:disable Metrics/MethodLength
@@ -41,6 +42,12 @@ module Creditsafe
         unless postal_code.nil?
           search_criteria["#{Creditsafe::Namespace::DAT}:Address"] = {
             "#{Creditsafe::Namespace::DAT}:PostalCode" => postal_code,
+          }
+        end
+
+        unless province.nil?
+          search_criteria["#{Creditsafe::Namespace::DAT}:Province"] = {
+            "#{Creditsafe::Namespace::DAT}:Province" => province,
           }
         end
 
