@@ -5,9 +5,10 @@ require "creditsafe/namespace"
 module Creditsafe
   module Request
     class CompanyReport
-      def initialize(company_id, custom_data)
+      def initialize(company_id, custom_data, language)
         @company_id = company_id
         @custom_data = custom_data
+        @language = language
       end
 
       # rubocop:disable Metrics/MethodLength
@@ -15,7 +16,7 @@ module Creditsafe
         message = {
           "#{Creditsafe::Namespace::OPER}:companyId" => company_id.to_s,
           "#{Creditsafe::Namespace::OPER}:reportType" => "Full",
-          "#{Creditsafe::Namespace::OPER}:language" => "EN",
+          "#{Creditsafe::Namespace::OPER}:language" => language.to_s,
         }
 
         unless custom_data.nil?
@@ -36,7 +37,7 @@ module Creditsafe
         custom_data.map { |key, value| { :@key => key, :content! => value } }
       end
 
-      attr_reader :company_id, :custom_data
+      attr_reader :company_id, :custom_data, :language
     end
   end
 end
