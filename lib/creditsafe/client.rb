@@ -45,7 +45,7 @@ module Creditsafe
       companies.nil? ? nil : companies.fetch(:company)
     end
 
-    def company_report(creditsafe_id, custom_data: nil, language: 'EN')
+    def company_report(creditsafe_id, custom_data: nil, language: 'FR')
       request =
         Creditsafe::Request::CompanyReport.new(creditsafe_id, custom_data, language)
       response = invoke_soap(:retrieve_company_online_report, request.message)
